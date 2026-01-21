@@ -8,10 +8,10 @@ const FooterComponent = () => {
     )
 }
 
-export const Jagan = "Jagan";
+// export const Jagan = "Jagan";
 
-export const Murali = "Murali";
+// export const Murali = "Murali";
 
-export const Anji = "Anji";
+// export const Anji = "Anji";
 
 export default FooterComponent;
