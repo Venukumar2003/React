@@ -2,10 +2,12 @@ import { useState ,useEffect} from 'react'
 
 import './App.css'
 
+import FetchDataComponent from "./components/FetchDataComponent"
+
 function App() {
   const [count, setCount] = useState(0)
 
- let  status = false;
+//  let  status = false;
 
   // useEffect(()=>{
   //   console.log("without dependency-------")
@@ -47,17 +49,17 @@ function App() {
 
 
 
-  useEffect(()=>{
-    let timer = setInterval(()=>{
-      console.log("Timer Tick")
+  // useEffect(()=>{
+  //   let timer = setInterval(()=>{
+  //     console.log("Timer Tick")
 
-    },2000)
+  //   },2000)
 
-    // Cleanup function
-    return(()=>{
-      clearInterval(timer)
-    })
-  },[])
+  //   // Cleanup function
+  //   // return(()=>{
+  //   //   clearInterval(timer)
+  //   // })
+  // },[])
 
   return (
     <>
@@ -68,6 +70,9 @@ function App() {
     <button onClick= {()=>{setCount(count+1)}}>Increase </button>
 
     <button onClick={()=>{setCount(count-1)}}>Decrease </button>
+
+
+    <FetchDataComponent />
 
 
     
