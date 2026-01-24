@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 // import FetchData from './components/FetchData'
-import UserTable from './components/UserTable'
+// import UserTable from './components/UserTable'
+import Table from "./components/Table"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -65,7 +66,9 @@ function App() {
       <button onClick={() => setCount(count - 1)}>Decrease</button>
 
       {/* <FetchData /> */}
-      <UserTable />
+      {/* <UserTable /> */}
+
+      <Table />
 
 
 
