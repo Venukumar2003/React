@@ -1,6 +1,6 @@
-import React, { useState ,useEffect} from 'react'
-import { Suspense ,lazy } from 'react';
-import { BrowserRouter, Routes, Route ,Link} from "react-router-dom"
+import React, { useState, useEffect } from 'react'
+import { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 
 
 // import HomePage from './components/HomePage'
@@ -9,9 +9,9 @@ import { BrowserRouter, Routes, Route ,Link} from "react-router-dom"
 // import Navbar from './components/Navbar'
 
 
-const HomePage = lazy(()=> import("./components/HomePage"))
-const AboutPage = lazy(()=> import("./components/AboutPage"))
-const ContactPage = lazy(()=>import("./components/ContactPage"))
+const HomePage = lazy(() => import("./components/HomePage"))
+const AboutPage = lazy(() => import("./components/AboutPage"))
+const ContactPage = lazy(() => import("./components/ContactPage"))
 
 
 
@@ -44,7 +44,7 @@ function App() {
 
 
 
- 
+
 
   return (
     <BrowserRouter>
@@ -69,10 +69,10 @@ function App() {
 
         </nav> */}
 
-       
-       {/* Using Suspence and lazy loading  */}
 
-       <div>
+      {/* Using Suspence and lazy loading  */}
+
+      <div>
         <nav>
 
           <ul>
@@ -91,9 +91,9 @@ function App() {
 
 
         </nav>
-      
 
-      {/* <Routes>
+
+        {/* <Routes>
         <Route path="/" element={HomePage ? <HomePage /> : <div> Loading... </div>} />
         <Route path="/about" element={AboutPage ? <AboutPage /> : <div> Loading... </div>} />
         <Route path="/contact" element={ContactPage ? <ContactPage /> : <div> Loading...</div>} />
@@ -101,15 +101,15 @@ function App() {
       </Routes> */}
 
 
-      {/* Using Suspence and Lazy loading */}
-<Suspense fallback= {<div>Loading ...</div>}>
-      <Routes>
-        <Route path="/" element={HomePage ? <HomePage /> : <div> Loading... </div>} />
-        <Route path="/about" element={AboutPage ? <AboutPage /> : <div> Loading... </div>} />
-        <Route path="/contact" element={ContactPage ? <ContactPage /> : <div> Loading...</div>} />
+        {/* Using Suspence and Lazy loading */}
+        <Suspense fallback={<div>Loading ...</div>}>
+          <Routes>
+            <Route path="/" element={HomePage ? <HomePage /> : <div> Loading... </div>} />
+            <Route path="/about" element={AboutPage ? <AboutPage /> : <div> Loading... </div>} />
+            <Route path="/contact" element={ContactPage ? <ContactPage /> : <div> Loading...</div>} />
 
-      </Routes>
-      </Suspense>
+          </Routes>
+        </Suspense>
 
       </div>
 
