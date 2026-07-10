@@ -389,92 +389,206 @@
 // export default Table;
 
 
-import { useState,useEffect } from "react";
+// import { useState,useEffect } from "react";
 
 
-const Table =()=>{
+// const Table =()=>{
 
 
-    const [data,setData] = useState([]);
-    const [search,setSearch] = useState("");
-    const [sort,setSort] = useState("");
+//     const [data,setData] = useState([]);
+//     const [search,setSearch] = useState("");
+//     const [sort,setSort] = useState("");
 
-    useEffect(()=>{
+//     useEffect(()=>{
 
-        const fetchData =async()=>{
-            try{
-                const response = await fetch("https://jsonplaceholder.typicode.com/users")
-                const result =  await response.json()
+//         const fetchData =async()=>{
+//             try{
+//                 const response = await fetch("https://jsonplaceholder.typicode.com/users")
+//                 const result =  await response.json()
 
-                console.log(result)
-                setData(result)
+//                 console.log(result)
+//                 setData(result)
 
-            }catch(error){
+//             }catch(error){
+//                 console.log(error);
+//             }
+
+//         }
+//         fetchData()
+//     },[])
+
+//     const filterUsers = data.filter((data)=>(
+//         data.name.toLowerCase().includes(search.toLowerCase())
+//     ))
+
+//     console.log("filtered Users", filterUsers)
+
+//     const sortedUsers = [...filterUsers].sort((a,b)=>{
+//         if(sort === "asc"){
+//             return a.name.localeCompare(b.name)
+//         }else{
+//             return b.name.localeCompare(a.name)
+//         }
+//     })
+
+//     console.log("sorted Users", sortedUsers)
+
+
+
+//     return(
+//         <>
+//         <h2> Users Table</h2>
+//         {data ? <div>Data is Loaded</div>: <div>Data is Loading</div>}
+
+//         <label> Filter : </label>
+//         <input type="search"
+//         name="search"
+//         placeholder="search"
+//         value ={search}
+//         onChange={(e)=>setSearch(e.target.value)} />
+
+//         <button onClick={()=>setSort("asc")}> A - Z</button>
+//         <button onClick={()=>setSort("desc")}> Z - A</button>
+
+//         <table border="2" cellPadding="5"> 
+//             <thead>
+//                 <tr>
+//                     <th>Name</th>
+//                     <th>E-Mail</th>
+//                     <th>Mobile</th>
+//                     <th>City</th>
+//                 </tr>
+//             </thead>
+
+//             <tbody>
+//                 {sortedUsers.map((user)=>(
+//                     <tr key={user.id}>
+//                         <td>{user.name}</td>
+//                         <td>{user.email} </td>
+//                         <td>{user.phone} </td>
+//                         <td>{user.address.city} </td>
+//                     </tr>
+//                 ))}
+//             </tbody>
+//         </table>
+
+//         </>
+//     )
+
+// }
+
+// export default Table;
+
+
+
+import React, { useState, useEffect } from "react";
+
+
+
+const Table = () => {
+
+    const [data, setData] = useState([]);
+    const [search, setSearch] = useState("");
+    const [sort, setSort] = useState("");
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                let response = await fetch("https://jsonplaceholder.typicode.com/users")
+                let result = await response.json();
+                console.log(result);
+                setData(result);
+
+            } catch (error) {
                 console.log(error);
+
             }
 
         }
-        fetchData()
-    },[])
+        fetchData();
 
-    const filterUsers = data.filter((data)=>(
-        data.name.toLowerCase().includes(search.toLowerCase())
-    ))
+    }, [])
 
-    console.log("filtered Users", filterUsers)
 
-    const sortedUsers = [...filterUsers].sort((a,b)=>{
-        if(sort === "asc"){
+    const filterData = data.filter((data) => {
+       return data.name.toLowerCase().includes(search.toLowerCase());
+    })
+
+    console.log("filter Users-----", filterData)
+
+
+    const sortData = [...filterData].sort((a, b) => {
+        if (sort === "asc") {
             return a.name.localeCompare(b.name)
-        }else{
+        } else {
             return b.name.localeCompare(a.name)
         }
     })
 
-    console.log("sorted Users", sortedUsers)
+    console.log("sortData", sortData)
+
+    const ascData = [...filterData].sort((a, b) => {
+        if (sort === "asc") {
+            return a.name.localeCompare(b.name)
+        }
+    })
+    console.log(ascData)
+
+    const descData = [...filterData].sort((a, b) => {
+        if (sort === "desc") {
+            return b.name.localeCompare(a.name)
+        }
+    })
+
+    console.log(descData)
 
 
-
-    return(
+    return (
         <>
-        <h2> Users Table</h2>
-        {data ? <div>Data is Loaded</div>: <div>Data is Loading</div>}
 
-        <label> Filter : </label>
-        <input type="search"
-        name="search"
-        placeholder="search"
-        value ={search}
-        onChange={(e)=>setSearch(e.target.value)} />
+            <h1> User Table </h1>
 
-        <button onClick={()=>setSort("asc")}> A - Z</button>
-        <button onClick={()=>setSort("desc")}> Z - A</button>
+            <label > Filter by Name : </label>
+            <input type="search"
+                name="search"
+                value={search}
+                onChange={((e) => setSearch(e.target.value))} />
 
-        <table border="2" cellPadding="5"> 
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>E-Mail</th>
-                    <th>Mobile</th>
-                    <th>City</th>
-                </tr>
-            </thead>
 
-            <tbody>
-                {sortedUsers.map((user)=>(
-                    <tr key={user.id}>
-                        <td>{user.name}</td>
-                        <td>{user.email} </td>
-                        <td>{user.phone} </td>
-                        <td>{user.address.city} </td>
+            <button onClick={() => setSort("asc")}> A-Z </button>
+            <button onClick={() => setSort("desc")}> Z-A </button>
+            <table border="2" cellPadding="5">
+                <thead>
+                    <tr>
+                        <th>Name </th>
+                        <th> E-Mail </th>
+                        <th> City </th>
+                        <th> Phone </th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
-        
+
+                </thead>
+
+
+
+                <tbody>
+                    {sortData.map((user) => (
+                        <tr key={user.id}>
+                            <td>{user.name} </td>
+                            <td>{user.email} </td>
+                            <td>{user.address.city} </td>
+                            <td>{user.phone} </td>
+                        </tr>
+
+                    ))}
+
+
+                </tbody>
+            </table>
+
+
+
         </>
     )
-
 }
 
 export default Table;
