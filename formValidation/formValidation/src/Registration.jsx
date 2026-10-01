@@ -200,7 +200,7 @@ const Registration = () => {
         }
 
         if (!formData.password) {
-            errors.email = "Password is required"
+            errors.password = "Password is required"
         } else if (formData.password < 4) {
             errors.passsword = "Password must contain atleast 4 characters"
         }
