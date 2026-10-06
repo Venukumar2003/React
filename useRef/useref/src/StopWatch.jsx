@@ -1,73 +1,128 @@
-import React, { useState, useEffect, useRef } from "react";
+// import React, { useState, useEffect, useRef } from "react";
 
-const StopWatch = () => {
 
-    const [time, setTime] = useState(0);
+// const StopWatch = () => {
+
+//     const [time, setTime] = useState(0);
+//     const timerRef = useRef(null);
+
+
+//     const startTimer = () => {
+//         timerRef.current = setInterval(() => {
+//             setTime(prev => prev + 10);
+//         },10)
+
+//     }
+
+//     const stopTimer = () => {
+//         clearInterval(timerRef.current)
+
+//     }
+
+//     const resetTimer = () => {
+//         clearInterval(timerRef.current)
+//         setTime(0)
+//     }
+
+
+//     const formatTime = (time) => {
+
+//         //  With Milliseconds
+
+//         const MilliSeconds = Math.floor(time % 1000 )
+
+//         const milliSeconds = `000${MilliSeconds}`.slice(-3);
+
+//         const seconds = `0000${Math.floor((time % 60000) / 1000)}`.slice(-2)
+
+
+//         const minutes = `000000${Math.floor((time % 3600000) / 60000)}`.slice(-2)
+
+//         const hours = `000000${Math.floor(time / 3600000)}`.slice(-2)
+
+
+//         return `${hours} : ${minutes} : ${seconds} : ${milliSeconds}`
+
+
+// //  With out milliseconds
+
+
+//         // const seconds = `0${time % 60}`.slice(-2);
+
+//         // const Minutes = Math.floor(time /);
+
+//         // const minutes = `0${Minutes % 5}`.slice(-2);
+
+//         // const hours = `0${Math.floor(time / 25)}`.slice(-2);
+
+//         // return `${hours} : ${minutes} : ${seconds} 
+//     }
+
+
+
+//     return (
+//         <>
+//             <h1>{formatTime(time)}</h1>
+//             <button onClick={startTimer}> Start </button>
+//             <button onClick={stopTimer}> Stop </button>
+//             <button onClick={resetTimer}> Reset </button>
+//         </>
+//     )
+// }
+
+
+// export default StopWatch;
+
+
+
+import { useState,useRef } from "react";
+
+const StopWatch =()=>{
+
+    const [time,setTime] = useState(0);
     const timerRef = useRef(null);
 
-
-    const startTimer = () => {
-        timerRef.current = setInterval(() => {
-            setTime(prev => prev + 10);
-        },10)
-
+    const startTimer =()=>{
+       timerRef.current = setInterval(()=>{
+        setTime(prev=>prev+1)
+       },1000)
     }
 
-    const stopTimer = () => {
-        clearInterval(timerRef.current)
-
+    const stopTimer =()=>{
+        clearInterval(timerRef.current);
     }
 
-    const resetTimer = () => {
-        clearInterval(timerRef.current)
-        setTime(0)
+    const resetTimer=()=>{
+        clearInterval(timerRef.current);
+        setTime(0);
     }
 
+    const formatTime = (time)=>{
+        const seconds = `0 ${time % 60}`.slice(-2);
+        const Minutes = Math.floor(time / 60);
+        const minutes = `0 ${Minutes % 60}`.slice(-2);
 
-    const formatTime = (time) => {
+        const Hours = Math.floor(minutes / 60)
 
-        //  With Milliseconds
+        const hours = `0 ${Math.floor(Hours % 60)}`.slice(-2)
 
-        const MilliSeconds = Math.floor(time % 1000 )
-
-        const milliSeconds = `000${MilliSeconds}`.slice(-3);
-
-        const seconds = `0000${Math.floor((time % 60000) / 1000)}`.slice(-2)
-
-
-        const minutes = `000000${Math.floor((time % 3600000) / 60000)}`.slice(-2)
-
-        const hours = `000000${Math.floor(time / 3600000)}`.slice(-2)
-
-
-        return `${hours} : ${minutes} : ${seconds} : ${milliSeconds}`
-
-
-//  With out milliseconds
-
-
-        // const seconds = `0${time % 60}`.slice(-2);
-
-        // const Minutes = Math.floor(time /);
-
-        // const minutes = `0${Minutes % 5}`.slice(-2);
-
-        // const hours = `0${Math.floor(time / 25)}`.slice(-2);
-
-        // return `${hours} : ${minutes} : ${seconds} 
+        return `${hours} : ${minutes} : ${seconds}`;
     }
 
 
+    return(
 
-    return (
         <>
-            <h1>{formatTime(time)}</h1>
-            <button onClick={startTimer}> Start </button>
-            <button onClick={stopTimer}> Stop </button>
-            <button onClick={resetTimer}> Reset </button>
+        {/* <p>`${hours} : ${minutes} : ${seconds}` </p> */}
+        
+        <p>{formatTime(time)} </p>
+
+        <button onClick={startTimer}>Start</button>
+        <button onClick={stopTimer}>Stop</button>
+        <button onClick={resetTimer}>Reset</button>
+        
         </>
     )
 }
-
 
 export default StopWatch;
